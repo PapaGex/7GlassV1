@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  db:
+    container_name: boiler_pgdb
+    restart: always
+    image: postgres:13-alpine
+    environment: 
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_HOST=db
+    # networks:
+    #   - core
+    ports:
+      - 5432:5432
+    volumes:
+      - ./backend/dump.sql:/docker-entrypoint-initdb.d/dump.sql
